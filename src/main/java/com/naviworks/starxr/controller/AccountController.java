@@ -1,0 +1,13 @@
+package com.naviworks.starxr.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/account")
+public class AccountController {
+	@RequestMapping("")
+	public String account() {
+		return "admin/management/account";
+	}
+}

@@ -1,0 +1,386 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#wrapper {
+	width: 100%;
+	float: left;
+}
+
+#sidebar-wrapper {
+	position: relative;
+}
+
+#status-bar {
+	width: 100%;
+	background-color: #051430;
+}
+
+#status-bar::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#status-bar a {
+	color: white;
+}
+
+#status-bar a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+#status-bar a:link {
+	color: white;
+}
+
+#status-bar a:visited {
+	color: white;
+}
+
+#status-bar ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+#status-bar li {
+	list-style: none;
+	font-size: 1.2em;
+}
+
+#status-bar .status-bar-section {
+	box-sizing: border-box;
+	width: 50%;
+	float: left;
+	color: white;
+}
+
+#status-bar #status-bar-left li {
+	float: left;
+	width: 202px;
+	background: url("/starxr-admin/assets/admin/images/common/starxr_logo.png") no-repeat 0 0;
+	text-indent: -200%;
+}
+
+#status-bar #status-bar-left ul {
+	box-sizing: border-box;
+	padding: 0 0 0 16px;
+}
+
+
+#status-bar #status-bar-right li {
+	float: right;
+}
+
+.status-bar-section li {
+	padding: 10px 14px;
+	display: inline-block;
+}
+
+#function-arrow {
+	display: block;
+	padding: 5px 0;
+}
+
+#function-arrow .arrow-toggler {
+	width: 32px;
+	height: 32px;
+	background-size: cover;
+  	background-color: transparent;
+  	border: none;
+	outline: none;
+}
+
+#function-arrow .arrow-toggler:focus { 
+	border: none;
+	outline: none;
+}
+
+#function-arrow .arrow-toggler.sidebar-toggle {
+	background: url("/starxr-admin/assets/admin/images/common/right-arrow.png") no-repeat 0 0;
+	background-size: cover;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+#modal-wrapper {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	display: none;
+	position: fixed;
+	opacity: 1;
+	background-color: rgba(0,0,0,0.4);
+	-webkit-transition: opacity .2s ease;
+    -moz-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+	transition: opacity .2s ease;
+}
+
+#modal-wrapper.alert {
+	background: transparent;
+}
+
+#modal-wrapper.opacity {
+	opacity: 0;
+}
+
+#modal-wrapper.show {
+	display: block;
+}
+
+#modal {
+	width: 40%;
+	padding: 10px;
+	background-color: #fff;
+	position: fixed;
+	top: 30%;
+	left: 30%;
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+#modal-status-bar {
+	width: 100%;
+}
+
+#modal-status-bar::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#exit-button {
+	width: 24px;
+	height: 24px;
+	float: right;
+	font-size: 1.5em;
+	cursor: pointer;
+	overflow: hidden;
+	position: relative
+}
+
+.fas.fa-times {
+	position: absolute;
+	top: -3px;
+	right: 0;
+}
+
+#modal-contents {
+	width: 100%;
+	display: block;
+	margin: 0 auto 30px auto;
+	text-align: center;
+}
+
+#modal-buttons {
+	text-align: center;
+}
+
+.common-button {
+	display: inline-block;
+	padding: 8px 20px;
+	margin: 0 3px;
+	color: #fff;
+    background-color: #6cacf2;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+	-webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+	transition: all .2s ease;
+	
+}
+
+.common-button:hover {
+	opacity: 1;
+}
+
+.common-button:focus {
+	outline: none;
+}
+
+.common-button.exit-click {
+	background-color: #dadada;
+}
+
+.common-button:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.common-button:visited {
+	color: #fff;
+}
+/*loading 화면*/
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 2;
+    background: rgba(0,0,0,0.4); /*not in ie */
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+
+.wrap-loading #loading{ /*로딩 이미지*/
+	width: 64px;
+	height: 64px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-left: -32px;
+    margin-top: -32px;
+    
+    background-image: url("/starxr-admin/assets/admin/images/common/loading.gif");  
+}
+
+.display-none{ /*감추기*/
+    display:none;
+}
+
+@media(max-width : 768px) {
+	#status-bar #status-bar-left li {
+		display: none;
+	}
+	
+	#status-bar .status-bar-section {
+		box-sizing: border-box;
+		width: 100%;
+		float: left;
+	}
+	#function-arrow .arrow-toggler.sidebar-toggle {
+		background: url("/starxr-admin/assets/admin/images/common/left-arrow.png") no-repeat 0 0;
+		background-size: cover;
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+	
+	#function-arrow .arrow-toggler {
+		width: 32px;
+		height: 32px;
+		background: url("/starxr-admin/assets/admin/images/common/right-arrow.png") no-repeat 0 0;
+		background-size: cover;
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+
+	#sidebar-wrapper .starxr-bottom-logo-wrapper {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+
+	#sidebar-wrapper .starxr-bottom-logo-wrapper .starxr-logo {
+		width: 202px;
+		height: 39px;
+		margin: 0 auto 10px auto;
+		background: url("/starxr-admin/assets/admin/images/common/starxr_logo.png") no-repeat 0 0;
+		background-size: cover;
+		background-color: transparent;
+	}
+}
+
+@media(min-width : 768px) {
+	#function-arrow .arrow-toggler.sidebar-toggle {
+		background: url("/starxr-admin/assets/admin/images/common/right-arrow.png") no-repeat 0 0;
+		background-size: cover;
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+	#function-arrow .arrow-toggler {
+		width: 32px;
+		height: 32px;
+		background: url("/starxr-admin/assets/admin/images/common/left-arrow.png") no-repeat 0 0;
+		background-size: cover;
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+}
+	
+/* common list */
+#list-section {
+	width: 100%;
+	height: 300px;
+	overflow: auto;
+	margin: 0 0 50px;
+	border-bottom: 1px solid #dadada;
+	-ms-overflow-style: none;
+}
+
+#list-section::-webkit-scrollbar {
+	display: none;
+}
+
+#list-schema {
+	width: 100%;
+	padding: 10px 10px 8px;
+	border: 1px solid #dadada;
+	background-color: #F5F5F5
+}
+
+#list-schema::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#list-schema #no-item {
+	padding: 0 6px 0 0;
+}
+
+.list-group {
+	width: 100%;
+}
+
+.list-tuple {
+	width: 100%;
+	padding: 10px 10px 8px;
+	cursor: pointer;
+}
+
+.list-item {
+	float: left;
+	padding: 0px 6px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* autofill color none */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    box-shadow: 0 0 0 30px white inset;
+}
+
+/* common more-arrow */
+#more-arrow {
+	font-size: 32px;
+	margin-left: -16px;
+	position: absolute;
+	bottom: -48px;
+	left: 50%;
+	color: #F5F5F5;
+	cursor: pointer;
+}
+
+#more-arrow:hover {
+	color: #dadada;
+}
+
+#more-arrow.hide {
+	display: none;
+}

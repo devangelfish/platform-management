@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="memberList" resultType="membervo">
+		<![CDATA[
+			select no, id, company_name as companyName, 
+			name, identifier, email, tel_no as telNo 
+			from user 
+			where is_enabled = true 
+			order by no desc
+			limit 7
+		]]>
+	</select>
+	
+	<update id="reissuancePassword" parameterType="map">
+		<![CDATA[
+			update user set password=#{encodePw} where no = #{no}
+		]]>
+	</update>
+	
+	<select id="memberListByKeyword" resultType="membervo" parameterType="keywordvo">	
+		<![CDATA[
+			select no, id, company_name as companyName, 
+			name, identifier, email, tel_no as telNo 
+			from user
+			where is_enabled = true
+		]]>
+		
+		<if test="keyword != '' or no != null">
+			<![CDATA[
+				and
+			]]>
+		</if>
+		<if test="keyword != ''">
+			<![CDATA[
+				(name like '%${keyword}%' or company_name like '%${keyword}%' or
+				identifier like '%${keyword}%' or email like '%${keyword}%' or 
+				tel_no like '%${keyword}%')
+			]]>
+		</if>
+		<if test="no != null">
+			<if test="keyword != ''">
+				<![CDATA[
+					and
+				]]>	
+			</if>
+			<![CDATA[
+				no < #{no}
+			]]>
+		</if>
+		<![CDATA[	
+			order by no desc
+			limit 7
+		]]>
+	</select>
+	
+	<select id="memberByNo" resultType="membervo" parameterType="long">
+		<![CDATA[
+			select no, id, company_name as companyName, company_number as companyNumber, 
+			name, identifier, email, email_receive as emailReceive, mobi_no as mobiNo,
+			tel_no as telNo, sms_receive as smsReceive 
+			from user 
+			where no = #{_parameter} and is_enabled = true
+		]]>
+	</select>
+	
+	<update id="memberModify" parameterType="map">
+		<![CDATA[
+			update user
+			set identifier = '${identifier}', email = '${email}',
+			    email_receive = ${emailReceive}, mobi_no = '${mobiNo}',
+			    tel_no = '${telNo}', sms_receive = ${smsReceive}
+			where no = ${no}
+		]]>
+	</update>
+	
+	<select id="memberModifyByNo" resultType="membervo" parameterType="long">
+		<![CDATA[
+			select no, id, identifier, email,
+			email_receive as emailReceive, mobi_no as mobiNo,
+			tel_no as telNo, sms_receive as smsReceive 
+			from user 
+			where no = #{_parameter}
+		]]>
+	</select>
+	
+	<update id="memberDeleteByNo" parameterType="Long">
+		<![CDATA[
+			update user
+			set is_enabled = false
+			where no = #{_parameter}
+		]]>
+	</update>
+	
+	<select id="deleteNextByNo" resultType="Long" parameterType="keywordvo" >
+		<choose>
+			<when test="keyword == ''">
+				<![CDATA[
+					select ifnull ((select max(no) as no from user where no < #{no} and is_enabled=true), max(no)) from user where is_enabled = true;
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					select ifnull((select max(no) as no from user 
+						where no<#{no} and is_enabled = true and
+						(name like '%${keyword}%' or company_name like '%${keyword}%' or
+						identifier like '%${keyword}%' or email like '%${keyword}%' or 
+						tel_no like '%${keyword}%')),max(no)) as no
+						
+					from (select no from user where is_enabled = true and
+							(name like '%${keyword}%' or company_name like '%${keyword}%' or
+							identifier like '%${keyword}%' or email like '%${keyword}%' or 
+							tel_no like '%${keyword}%') order by no desc) as user_keyword
+				]]>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="maxCount" resultType="Long" parameterType="keywordvo">
+		<![CDATA[
+			select count(no) 
+			from user
+			where is_enabled = true
+		]]>
+		<if test="keyword != ''">
+		<![CDATA[
+			and (name like '%${keyword}%' or company_name like '%${keyword}%' or
+			identifier like '%${keyword}%' or email like '%${keyword}%' or 
+			tel_no like '%${keyword}%')
+		]]>
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,15 @@
+<%
+	for(var i = 0; i < data.length; i++){
+		var vo = data[i];	
+%>
+	<div class="list-group" data-no="<%=vo.no%>">
+		<div class="list-tuple">
+			<div class="list-item no-item"><%=index%></div>
+			<div class="list-item name-item"><%=vo.userName%></div>
+			<div class="list-item title-item list-disabled"><%=vo.title%></div>
+			<div class="list-item count-item list-disabled"><%=vo.answerCount%></div>
+		</div>
+	</div>
+<%
+	}
+%>

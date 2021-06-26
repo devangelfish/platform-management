@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+#dashboard-wrapper{
+	width: 90%;
+	margin: 0 auto;
+}
+
+#pie-chart-container {
+	width: 90%;
+	box-sizing: border-box;
+	margin: 0 auto;
+	position: relative;
+}
+
+#pie-chart-container::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.pie-chart {
+	width: 50%;
+	float: left;
+}
+
+canvas {
+	min-height: 200px;
+}
+
+#question-list {
+	width: 90%;
+	box-sizing: border-box;
+	margin: 50px auto;
+	position: relative;
+}
+
+#list-title {
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#search-section {
+	width: 100%;
+	margin: 8px 0;
+    box-sizing: border-box;
+    padding: 7px 15px 10px 15px;
+    border: 1px solid #dadada;
+    cursor: text;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+#search-section::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#search-section #search-input {
+	width: 95%;
+	float: left;
+	border: 0;
+}
+
+#search-section #search-input:focus {
+	outline: none;
+}
+
+#search-section #search-button {
+	width: 5%;
+	float: right;
+	display: block;
+	position: relative;
+	border: 0;
+	outline: none;
+	color: #dadada;
+	background-color: transparent;
+	-webkit-transition: background-color .2s ease;
+    -moz-transition: background-color .2s ease;
+    -o-transition: background-color .2s ease;
+	transition: background-color .2s ease;
+}
+
+.fas.fa-search {
+	float: right;
+	line-height: 24px;
+}
+
+#contract-container {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.id-item {
+	display: none;
+}
+
+.no-item {
+	width: 10%;
+}
+
+.name-item {
+	width: 15%;
+}
+
+.title-item {
+	width: 60%;
+}
+
+.count-item {
+	width: 15%;
+}
+
+.list-tuple {
+	-webkit-transition: background-color .2s ease;
+    -moz-transition: background-color .2s ease;
+    -o-transition: background-color .2s ease;
+	transition: background-color .2s ease;
+}
+
+.list-tuple.focus {
+	background-color: #dadada;
+}
+
+#search-section.focus {
+	border-radius: 10px;
+	box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+}
+
+.scroll-frozen {
+	overflow: hidden;
+}
+
+#list-section {
+	height: auto;
+}
+
+@media (max-width: 768px){
+	.pie-chart {
+		width: 90%;
+	}
+	.no-item {
+		display: none;
+	}
+	
+	.name-item {
+		width: 20%;
+	}
+	
+	.title-item {
+		width: 80%;
+	}
+	
+	.count-item {
+		display: none;
+	}
+}

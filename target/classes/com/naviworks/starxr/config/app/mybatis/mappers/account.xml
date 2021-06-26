@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+	<update id="modify" parameterType="uservo">
+		<![CDATA[
+			update admin set email=#{email}, contact_no=#{contactNo}, fax_no=#{faxNo}
+		]]>
+		<if test="password != ''">
+			<![CDATA[
+				, password=#{password}
+			]]>
+		</if>
+		<![CDATA[
+			where id=#{id}
+		]]>
+	</update>
+</mapper>

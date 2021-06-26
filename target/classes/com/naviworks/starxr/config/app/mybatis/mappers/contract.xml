@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="contract">
+	<select id="getServiceList" resultType="servicevo">
+		<![CDATA[
+			select service.no as no, service.name as name, service.user_no as userNo, service.admin_no as adminNo, user.name as userName, date_format(service.date, '%Y/%m/%d') as date
+			from service
+			join user
+			on service.user_no = user.no
+			order by service.no desc
+			limit 10
+		]]>
+	</select>
+	
+	<select id="getServiceListByKeyword" resultType="servicevo" parameterType="keywordvo">
+		<![CDATA[
+			select service.no as no, service.name as name, service.user_no as userNo, service.admin_no as adminNo, user.name as userName, date_format(service.date, '%Y/%m/%d') as date
+			from service
+			join user
+			on service.user_no = user.no
+		]]>
+		<if test="keyword != '' or no != null">
+			<![CDATA[where]]>
+		</if>
+		<if test="keyword != ''">
+			<![CDATA[
+				service.name like '%${keyword}%' or user.name like '%${keyword}%'
+			]]>
+		</if>
+		<if test="no != null">
+			<if test="keyword != ''">
+				<![CDATA[
+					and
+				]]>	
+			</if>
+			<![CDATA[
+				service.no < #{no}
+			]]>
+		</if>
+		<![CDATA[	
+			order by service.no desc
+			limit 10
+		]]>
+	</select>
+	
+	<select id="getContractListByNo" resultType="contractvo" parameterType="long">
+		<![CDATA[
+			select contract.no,
+			contract.name,
+			contract.type,
+			(select date_format(s.process_date, '%Y/%m/%d') from status_info s where s.contract_no = contract.no order by s.status_no desc limit 1) as latestStatusDate,
+			date_format(contract_date, '%Y/%m/%d') as contractDate,
+			contract_etc as contractEtc,
+			price,
+			service_no as serviceNo
+			from service
+			join contract
+			on service.no = contract.service_no
+			where contract.service_no = #{_parameter}
+		]]>
+	</select>
+	
+	<select id="getStatusListByNo" resultType="statusvo" parameterType="long">
+		<![CDATA[
+			select contract_no as contractNo,
+			status_no as statusNo,
+			date_format(process_date, '%Y/%m/%d %H:%i:%s') as processDate,
+			(select name from status where no = status_no) as name,
+			contents
+			from status_info
+			where contract_no = #{_parameter}
+		]]>
+	</select>
+	
+	<update id="updateContractStatus" parameterType="statusvo">
+		<![CDATA[
+			update status_info set contents = #{contents} where contract_no = #{contractNo} and status_no = #{statusNo}
+		]]>
+	</update>
+	
+	<insert id="setContractStatus" parameterType="statusvo">
+		insert into status_info values(#{contractNo}, #{statusNo} + 1, now(), null);
+	</insert>
+	
+	<select id="getStatus" resultType="statusvo">
+		<![CDATA[
+			select no as statusNo,
+			name
+			from status
+		]]>
+	</select>
+	
+	<select id="getMaxStatus" resultType="long">
+		<![CDATA[
+			select max(no) from status
+		]]>
+	</select>
+</mapper>

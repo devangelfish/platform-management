@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+#login-container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+#login-container .navi-logo {
+	display: block;
+	margin: 100px auto 50px auto;
+	width: 180px;
+	height: 47px;
+	background: url("/starxr-admin/assets/admin/images/login/naviworks_logo.png") no-repeat 0 0;
+	background-size: cover;
+    background-color: transparent;
+}
+
+#login-section {
+	text-align: center;
+}
+
+#login-section .input-section {
+	width: 400px;
+	margin: 0 auto 8px auto;
+	box-sizing: border-box;
+	padding: 7px 35px 10px 35px;
+	border: 1px solid #dadada;
+	cursor: pointer;
+}
+
+.focus {
+	border: 1px solid #EE8200 !important;
+	box-shadow: 0 2px 6px 0 rgb(61 80 81 / 8%);
+}
+
+#login-section .id-password-input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px 0 8px;
+	display: block;
+	border: 0px;
+	cursor: pointer;
+}
+
+#login-section .id-password-input:focus {
+	border: 0px;
+	outline: none;
+}
+
+#login-section #login-button-div {
+	width: 400px;
+	margin: 0 auto 8px auto;
+	height: 50px;
+	box-sizing: border-box;
+	display: block;
+	border: 0px;
+	background-color: #EE8200;
+	color: #fff;
+}
+
+#login-section #login-button-div:focus {
+	border: 0px;
+	outline: none;
+}
+
+#login-section #id-save-section {
+	width: 400px;
+	margin: 2px auto;
+	text-align: left;
+}
+
+#login-section #contact-section {
+	margin: 48px 0 0 0;
+	display:inline-block;
+	color: #8E8E8E;
+}
+
+#login-section .failMessage {
+	color: #f00;
+}
+
+#id-save-section #id-save-group {
+	display: inline-block;
+	cursor: pointer;
+}
+
+i.far.fa-check-circle {
+	color: #dadada;
+	font-size: 2em;
+	vertical-align: middle;
+}
+
+#id-save-section #id-save-text {
+	vertical-align: middle;
+}
+
+#id-save-section #remember {
+	display: none;
+}
+
+#password-section {
+	position: relative;
+}
+
+#password-section #hidden {
+	position: absolute;
+    top: 21.5px;
+    right: 15px;
+    bottom: 0;
+    color: #AAA9A9;
+}
+
+@media(max-width : 768px) {
+	#login-section .input-section {
+		width: 100%;
+		margin: 0 auto 8px auto;
+		box-sizing: border-box;
+		padding: 7px 35px 10px 35px;
+		border: 1px solid #dadada;
+		cursor: pointer;
+	}
+	
+	#login-section #login-button-div {
+		width: 100%;
+		margin: 0 auto 8px auto;
+		height: 50px;
+		box-sizing: border-box;
+		display: block;
+		border: 0px;
+		background-color: #EE8200;
+		color: #fff;
+	}
+	
+	#login-section #id-save-section {
+		width: 100%;
+		margin: 2px auto;
+		text-align: left;
+	}
+	
+	i.far.fa-check-circle {
+		color: #dadada;
+		font-size: 1.5em;
+		vertical-align: middle;
+	}
+}

@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+#manager-box {
+	width: 90%;
+	margin: 0 auto;
+}
+
+#manager-box #info-text {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 0 0 30px 0;
+	text-align: center;
+}
+
+.infomation.top {
+	padding-top: 35px;
+	border-top: 1px solid #DADADA;
+}
+
+.infomation .info-row {
+	width: 100%;
+}
+
+.infomation .info-row::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.infomation .info-row .info-one-box {
+	width: 50%;
+	margin: 0 0 15px 0;
+	float : left;
+}
+
+.info-one-box .box-section {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.info-one-box .box-section::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.box-section.right-box {
+	text-align: right;
+}
+
+.right-box .common-button {
+	margin: 3px 0;
+    padding: 0 10px;
+    border-radius: 6px;
+}
+
+.info-item {
+	width: 35%;
+	float: left;
+	padding: 3px 0;
+}
+
+.input-wrapper {
+	width: 65%;
+	padding: 2px 10px;
+	float: left;
+	border: 1px solid #dadada;
+}
+
+.uneditable, .editable {
+	width: 100%;
+	outline: none;
+	border: 0;
+}
+
+@media (max-width: 768px){
+	.infomation .info-row .info-one-box {
+		width: 100%;
+		display: inline-block;
+	}
+}
