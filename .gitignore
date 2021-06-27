@@ -2,4 +2,5 @@
 **/.settings/
 **/.classpath
 **/.project
-**/jdbc.properties
+jdbc.properties
+pom.xml
